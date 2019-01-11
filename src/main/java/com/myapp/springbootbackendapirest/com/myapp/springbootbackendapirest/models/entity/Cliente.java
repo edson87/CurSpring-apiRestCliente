@@ -1,5 +1,7 @@
 package com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,6 +22,11 @@ public class Cliente implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
+
+    @PrePersist
+    private void createDate(){
+        createAt = new Date();
+    }
 
     public Long getId() {
         return id;

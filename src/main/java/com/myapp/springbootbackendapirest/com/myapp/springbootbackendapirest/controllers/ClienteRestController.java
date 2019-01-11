@@ -29,7 +29,7 @@ public class ClienteRestController {
 
     @PostMapping("/clientes")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente cliente(@RequestBody Cliente cliente){
+    public Cliente create (@RequestBody Cliente cliente){
         return clienteService.save(cliente);
     }
 
