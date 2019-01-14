@@ -1,5 +1,7 @@
 package com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class Cliente implements Serializable {
     private Date createAt;
 
     @PrePersist
-    public void prepersist(){
+    private void createDate(){
         createAt = new Date();
     }
 
