@@ -47,7 +47,7 @@ public class ClienteRestController {
     }
 
     @DeleteMapping("/clientes/{id}")
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void delete(@PathVariable Long id){
         clienteService.delete(id);
     }
