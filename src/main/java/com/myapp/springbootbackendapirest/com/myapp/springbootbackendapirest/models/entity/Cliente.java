@@ -1,6 +1,7 @@
 package com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,8 +17,10 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
     private String apellido;
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
