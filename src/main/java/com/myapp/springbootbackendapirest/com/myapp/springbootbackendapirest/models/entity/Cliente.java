@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -35,14 +36,15 @@ public class Cliente implements Serializable {
     @Email
     private String email;
 
+    @NotNull(message = "El campo fecha no puede ser nulo")
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @PrePersist
-    private void createDate(){
-        createAt = new Date();
-    }
+    //@PrePersist
+    //private void createDate(){
+    //    createAt = new Date();
+    //}
 
     public Long getId() {
         return id;
