@@ -12,12 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -146,5 +148,30 @@ public class ClienteRestController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/clientes/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo, @RequestParam("id") Long id){
 
+            Map<String, Object> response = new HashMap<>();
+            Cliente cliente = clienteService.findById(id);
+            if (!archivo.isEmpty()){
+                String nombreArchivo = UUID.randomUUID()+"_"+archivo.getOriginalFilename().replace(" ","");
+                Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
+
+                try{
+                    Files.copy(archivo.getInputStream(),rutaArchivo);
+
+                }catch (IOException e){
+                    response.put("error","No se pudo subir la imagen: "+nombreArchivo);
+                    response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                    return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+
+                cliente.setFoto(nombreArchivo);
+                clienteService.save(cliente);
+
+                response.put("cliente",cliente);
+                response.put("mensaje","Se subio correctamente la foto: "+nombreArchivo);
+            }
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
+    }
 }
