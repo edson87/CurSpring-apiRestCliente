@@ -3,6 +3,8 @@ package com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.co
 import com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.entity.Cliente;
 import com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.services.IClienteService;
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -36,6 +38,7 @@ public class ClienteRestController {
     @Autowired
     private IClienteService clienteService;
     Cliente cliente;
+    private final Logger log = LoggerFactory.getLogger(ClienteRestController.class);
 
     @GetMapping("/clientes")
     public List<Cliente> index() {
@@ -171,7 +174,7 @@ public class ClienteRestController {
             if (!archivo.isEmpty()){
                 String nombreArchivo = UUID.randomUUID()+"_"+archivo.getOriginalFilename().replace(" ","");
                 Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
-
+                log.info(rutaArchivo.toString());
                 try{
                     Files.copy(archivo.getInputStream(),rutaArchivo);
 
