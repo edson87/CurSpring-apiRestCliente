@@ -1,22 +1,35 @@
 package com.myapp.springbootbackendapirest.com.myapp.springbootbackendapirest.models.entity;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
+
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String contraseña;
-    @Column(name = "create_at")
-    @Temporal(TemporalType.DATE)
-    private Date createAt;
+
+    @Column(unique = true, length = 20)
+    private String username;
+
+    @Column(length = 60)
+    private String password;
+
+    private Boolean enabled;
+
+    //lazy carga perezosa, all eliminar a todos los relacionados
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST ,CascadeType.ALL})
+    @JoinTable(name = "usuarios_roles", joinColumns = { @JoinColumn(name = "usuario_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") },
+            uniqueConstraints = { @UniqueConstraint(columnNames = {"usuario_id","role_id"}) } )
+    private List<Role> roles = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -26,27 +39,35 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -1,34 +1,29 @@
 /*Copulando datos*/
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andres', 'Guzman', 'profesor@gmail.com', '2018-01-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Jhon', 'Doe', 'jhon@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andrea', 'Peralta', 'andrea@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Juan', 'Antezana', 'juan@gmail.com', '2018-01-05');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pablo', 'Balco', 'pablo@gmail.com', '2018-01-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Liz', 'Moya', 'liz@gmail.com', '2018-02-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Maria', 'Crespo', 'maria@gmail.com', '2018-02-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pedro', 'Rivera', 'pedro@gmail.com', '2018-03-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Ruben', 'Morales', 'ruben@gmail.com', '2018-03-11');
+INSERT INTO regiones (id, nombre) VALUES(1, 'Sudamerica');
+INSERT INTO regiones (id, nombre) VALUES(2, 'Centroamerica');
+INSERT INTO regiones (id, nombre) VALUES(3, 'Norteamerica');
+INSERT INTO regiones (id, nombre) VALUES(4, 'Europa');
+INSERT INTO regiones (id, nombre) VALUES(5, 'Asia');
+INSERT INTO regiones (id, nombre) VALUES(6, 'Oceania');
 
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(1, 'Andres', 'Guzman', 'profesor@gmail.com', '2018-01-01');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(2, 'Jhon', 'Doe', 'jhon@gmail.com', '2018-01-02');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(4, 'Andrea', 'Peralta', 'andrea@gmail.com', '2018-01-02');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(4, 'Juan', 'Antezana', 'juan@gmail.com', '2018-01-05');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(1, 'Pablo', 'Balco', 'pablo@gmail.com', '2018-01-06');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(3, 'Liz', 'Moya', 'liz@gmail.com', '2018-02-06');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(3, 'Maria', 'Crespo', 'maria@gmail.com', '2018-02-10');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(5, 'Pedro', 'Rivera', 'pedro@gmail.com', '2018-03-01');
+INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(6, 'Ruben', 'Morales', 'ruben@gmail.com', '2018-03-11');
 
-INSERT INTO usuario (nombre, contraseña, create_at) VALUES('Andres', 'admin', '2018-01-01');
-INSERT INTO usuario (nombre, contraseña, create_at) VALUES('Ruben', 'admin', '2018-03-11');
+/*Creamos usuarios y roles */
+INSERT INTO usuarios (username, password, enabled) VALUES ('andres','$2a$10$0zCDk4/.DeiUA08CcSwgmusmGwkbp0TOvAwMx0UKAP4ikvD9eIdCq',1);
+INSERT INTO usuarios (username, password, enabled) VALUES ('admin','$2a$10$NdDjJP7BED1DQt2YiKeCluQ0W/iDC38ymLveABrzAIV.rpCYVzFke',1);
 
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andres', 'Guzman', 'profesor1@gmail.com', '2018-01-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Jhon', 'Doe', 'jhon1@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andrea', 'Peralta', 'andrea1@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Juan', 'Antezana', 'juan1@gmail.com', '2018-01-05');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pablo', 'Balco', 'pablo1@gmail.com', '2018-01-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Liz', 'Moya', 'liz1@gmail.com', '2018-02-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Maria', 'Crespo', 'maria1@gmail.com', '2018-02-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pedro', 'Rivera', 'pedro1@gmail.com', '2018-03-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Ruben', 'Morales', 'ruben1@gmail.com', '2018-03-11');
+INSERT INTO roles (nombre) VALUES ('ROLE_USER');
+INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
 
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andres', 'Guzman', 'profesor11@gmail.com', '2018-01-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Jhon', 'Doe', 'jhon11@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andrea', 'Peralta', 'andrea11@gmail.com', '2018-01-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Juan', 'Antezana', 'juan11@gmail.com', '2018-01-05');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pablo', 'Balco', 'pablo11@gmail.com', '2018-01-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Liz', 'Moya', 'liz11@gmail.com', '2018-02-06');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Maria', 'Crespo', 'maria11@gmail.com', '2018-02-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Pedro', 'Rivera', 'pedro11@gmail.com', '2018-03-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Ruben', 'Morales', 'ruben11@gmail.com', '2018-03-11');
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (1,1);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2,2);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2,1);
+
